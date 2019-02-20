@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="data" EntityNamespace="HastaTakip" ContextNamespace="HastaTakip" Class="Veriler" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="0795429d-720f-4012-bc29-45513ef86a9e" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=&quot;C:\Users\goksem\Documents\Expression\Blend 4\Projects\HastaTakip\HastaTakip\bin\Debug\data.sdf&quot;" Provider="System.Data.SqlServerCe.4.0" />
+  <Table Name="Kisiler" Member="Kisiler">
+    <Type Name="Kisiler" ed:Guid="ca5281f0-d508-4546-adcf-f50121ec4b79">
+      <Column Name="KisiID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="074cc5c8-d527-4bef-a8fd-c239e5759ae2" />
+      <Column Name="Adi" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="fc8c0f37-d8ed-4846-9fcb-e612acc05707" />
+      <Column Name="Soyadi" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="c6b49162-38c7-4e95-b8e8-5729f7fc54a6" />
+      <Column Name="Tc" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="8dff6302-fd05-4c9e-87c4-256ca42564d9" />
+      <Column Name="Meslek" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="0d1be16f-1857-4701-b3a4-be774e0bd16e" />
+      <Column Name="DTarihi" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="23" ed:ValidateRequired="true" ed:Guid="98d3aa5f-8530-4677-adb5-dade3dd2801a" />
+      <Column Name="KTarihi" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Always" Precision="23" ed:ValidateRequired="true" ed:Guid="a0865ceb-9846-4656-9186-70dd574a06bb" />
+      <Column Name="Cinsiyeti" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="909dff8d-a2fe-4730-97b6-6efd25ea972f" />
+      <Column Name="Telefon" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="b4dfe17c-6ccd-4fef-a6cf-64fb89ef6365" />
+      <Column Name="Ili" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="07d2cac1-7d0d-4790-934c-8f1d0270daf4" />
+      <Column Name="Ilcesi" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="34eaf00b-9ffa-4862-b492-507fda0fa786" />
+      <Column Name="Yas" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="00172d60-e6be-4372-bc27-f480c886218c" />
+      <Column Name="Adresi" Type="System.String" DbType="NVARCHAR(255)" CanBeNull="true" UpdateCheck="Always" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="9d1336ff-730a-4ce3-8fef-316e4023c018" />
+      <Column Name="Resim" Type="System.Byte[]" DbType="IMAGE" CanBeNull="true" UpdateCheck="Never" MaxLength="1073741823" ed:ValidateRequired="false" ed:Guid="456599ae-c738-4f53-8521-3b78cccb1600" />
+      <Column Name="RandevuTarihi" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" UpdateCheck="Always" Precision="23" ed:ValidateRequired="false" ed:Guid="fe83a6f7-25ef-4e02-9ec6-180771725f47" />
+      <Association Name="Kisiler_Bulgular" ed:AssociationGuid="d0dc23c0-1419-419e-aa5f-f9af09adac34" Member="Bulgular" ed:Guid="a8a1317c-8b9b-4f17-8401-d687a7975d31" ThisKey="KisiID" OtherKey="KisiID" Type="Bulgular" />
+      <Association Name="Kisiler_FizikiMuayene" ed:AssociationGuid="7ac62fd9-baca-461c-befd-abf12b591e06" Member="FizikiMuayenes" ed:Guid="44abf621-2178-4857-948c-ab3ae76aaedd" ThisKey="KisiID" OtherKey="KisiID" Type="FizikiMuayene" />
+      <Association Name="Kisiler_Laboratuar" ed:AssociationGuid="62b06dd7-df93-44cb-9736-3abaaf4b99e8" Member="Laboratuars" ed:Guid="cc59e65b-2064-4bd3-838e-f78cafc7cc6e" ThisKey="KisiID" OtherKey="KisiID" Type="Laboratuar" />
+      <Association Name="Kisiler_Tahsilat" ed:AssociationGuid="3e823e63-5cf7-4e36-8da0-400ef351ec28" Member="Tahsilats" ed:Guid="36c0b115-c3b9-4695-84c5-62c08a0c0cff" ThisKey="KisiID" OtherKey="KisiID" Type="Tahsilat" />
+    </Type>
+  </Table>
+  <Table Name="Bulgular" Member="Bulgular">
+    <Type Name="Bulgular" ed:Guid="8ab7428a-b614-429b-8071-f0e1a7176d22">
+      <Column Name="BulgularID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="4be30755-9999-4085-830d-3ae8fac49262" />
+      <Column Name="KisiID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="40053435-480c-4da5-8e0b-5d67f45f136f" />
+      <Column Name="Kulak" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="021a83d3-3552-4a6d-809f-f2e5463b5935" />
+      <Column Name="Burun" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="a65e8300-df5c-4578-8c9b-dad536efb5c0" />
+      <Column Name="Bogaz" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="26074e56-b53b-4040-8109-e6de1719d176" />
+      <Column Name="Göz" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="aa03e67e-a31a-4611-8e48-d4620c4fbae3" />
+      <Column Name="Solunum" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="3b8e1d71-fbdd-49c8-885d-76b61ddac3b8" />
+      <Column Name="Sindirim" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="c7bfcb1f-6d8d-4368-9690-2941d83c9c6b" />
+      <Column Name="Dolasim" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="845d3f75-e3a5-41eb-a171-a513ae0513cd" />
+      <Column Name="Deri" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="a447adad-7cd0-4ad7-aa54-9d8ca36eaf44" />
+      <Column Name="Sikayetler" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="40de145d-1b1c-4800-94c0-eaf6d14476e6" />
+      <Column Name="Uriner" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="1a3ec4f6-b3fb-48de-8bf3-fc624f9a9d6d" />
+      <Column Name="Yenidogan" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="dfb6c5ac-7dc6-4fd2-841a-434da4bc02d3" />
+      <Column Name="Ilac" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="afc1f864-e218-4bcc-af49-90b269f44076" />
+      <Column Name="Hastalik" Type="System.String" DbType="NVARCHAR(4000)" CanBeNull="true" UpdateCheck="Always" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="1cf6e3ac-61cc-4873-a462-bc98d3dfea68" />
+      <Association Name="Kisiler_Bulgular" ed:AssociationGuid="d0dc23c0-1419-419e-aa5f-f9af09adac34" Member="Kisiler" ed:Guid="f7ca34b1-0cd6-4963-90f7-a27dab82d6fa" ThisKey="KisiID" OtherKey="KisiID" Type="Kisiler" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="ilceler" Member="Ilceler">
+    <Type Name="Ilceler" ed:Guid="676734d3-7adb-45bc-af05-5e7952ea16dd">
+      <Column Name="ilce_no" Member="IlceNo" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="f33ed0af-e115-468b-9351-a5fb4c6b963d" />
+      <Column Name="isim" Member="Isim" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="021b8bdb-5b91-4a01-99b8-1df2ca323f62" />
+      <Column Name="il_no" Member="IlNo" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="bd9b27dd-89de-4988-a3ec-dc9681b04d9c" />
+      <Association Name="Iller_Ilceler" ed:AssociationGuid="783a60e1-6f0a-46e7-9b2d-d1288a56c81c" Member="Iller" ed:Guid="df2e2280-406c-47fe-98a0-baf84224dc21" ThisKey="IlNo" OtherKey="IlNo" Type="Iller" DeleteRule="NO ACTION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="iller" Member="Iller">
+    <Type Name="Iller" ed:Guid="62fec363-b296-4a2b-9a72-5ce588244d7a">
+      <Column Name="il_no" Member="IlNo" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="60b89f78-0ce6-4de1-8df4-b4d11b213596" />
+      <Column Name="isim" Member="Isim" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="277b996d-b873-4544-ad31-20d78b56571b" />
+      <Association Name="Iller_Ilceler" ed:AssociationGuid="783a60e1-6f0a-46e7-9b2d-d1288a56c81c" Member="Ilceler" ed:Guid="3075bc0d-4a86-4837-94d0-dc66f0177a8f" ThisKey="IlNo" OtherKey="IlNo" Type="Ilceler" />
+    </Type>
+  </Table>
+  <Table Name="FizikiMuayene" Member="FizikiMuayene">
+    <Type Name="FizikiMuayene" ed:Guid="1f09861f-a04b-43ec-9975-dfdb0f6293c6">
+      <Column Name="FizikiMuayeneID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="c02c4735-28aa-4731-ad01-4d2bc4237085" />
+      <Column Name="KisiID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="42c07a95-c843-4638-90d0-c8db274cccb9" />
+      <Column Name="Ates" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="e6d3949e-a605-4dba-9eec-886c9a601935" />
+      <Column Name="Solunum" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="87bfb605-43ed-4295-a515-6b1b6cbdd46f" />
+      <Column Name="Nabiz" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="1e212e28-f47d-4510-ba90-50407707533f" />
+      <Column Name="Tansiyon" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="3def133c-0c8f-4c55-ae96-76ee00ae9d3c" />
+      <Column Name="Kilo" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="9c2ed0aa-8406-484d-9cee-971a8fa06c3c" />
+      <Column Name="Boy" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="acbe1056-0011-4515-8373-3e4f51a11202" />
+      <Association Name="Kisiler_FizikiMuayene" ed:AssociationGuid="7ac62fd9-baca-461c-befd-abf12b591e06" Member="Kisiler" ed:Guid="a83c4d43-3067-437a-b096-4e8ca2a20669" ThisKey="KisiID" OtherKey="KisiID" Type="Kisiler" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Laboratuar" Member="Laboratuar">
+    <Type Name="Laboratuar" ed:Guid="d09a790d-6fcb-460b-809d-a2bb3dcaf6cf">
+      <Column Name="LaboratuarID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="a3fdb99a-6b39-46d3-bcba-0d5677a8a46e" />
+      <Column Name="WBC" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="945191a4-f370-498a-b300-4f1198f8954e" />
+      <Column Name="HB" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="a76d9353-1f72-483c-9f4b-da2e2b05c9e3" />
+      <Column Name="HCT" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="00a63358-ab8a-4151-b158-c8b15075db5e" />
+      <Column Name="PLT" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="47904ed1-93a4-4cd6-89a4-99be16f94487" />
+      <Column Name="MCV" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="1051af08-aac2-4f66-b029-a2928888dcdb" />
+      <Column Name="AKŞ" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="273399bf-9d11-4bc3-9a5a-340d8dccb8e1" />
+      <Column Name="TKŞ" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="54465246-2c5b-4332-b548-0ff61725c342" />
+      <Column Name="ÜRE" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="e84162c2-d9d6-4b19-827d-0867f1ee24c4" />
+      <Column Name="KREATİNİN" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="6415aa68-8c37-40cb-ae2a-7e1084bb3038" />
+      <Column Name="ALT" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="fd0247d1-032c-4626-86f8-42d4a0e3b989" />
+      <Column Name="AST" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="2d129c47-7d38-4579-85a3-c86a7943a603" />
+      <Column Name="[ALK F]" Member="ALKF" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="f545712b-2c02-4a73-b456-9a5581bdc6d1" />
+      <Column Name="GGT" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="01a84dc4-0765-4a64-af48-b0abc1198732" />
+      <Column Name="TPROTEİN" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="95f356c8-242a-4d8e-81f0-065c4f2474b1" />
+      <Column Name="ALBUMİN" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="7a7ef70d-011c-4cc5-aeeb-b4ccdaf4136e" />
+      <Column Name="NA" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="563ed95f-9b95-4b18-8c45-af5d66d93ef2" />
+      <Column Name="K" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="c0c83625-b402-4143-af5a-fb35f00b0730" />
+      <Column Name="CA" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="12e0c5fa-0262-4713-a1f5-ae6292566427" />
+      <Column Name="P" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="8f8240dd-6200-4e13-9c10-416868c6e1a9" />
+      <Column Name="[T.KOL]" Member="TKOL" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="9db5765c-cec7-49aa-b91f-9f6f8862248b" />
+      <Column Name="TG" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="70f89f93-3e4e-4f5e-824e-26eaed32c7fa" />
+      <Column Name="LDL" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="ddcb6a68-430b-4f24-a48f-9a1f6ff9386d" />
+      <Column Name="HDL" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="c25ec331-6532-4a2e-bb55-dfecae07b2fb" />
+      <Column Name="VLDL" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="3796a85e-5503-4a00-9b70-33277f0590e2" />
+      <Column Name="HBA1C" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="e3743799-0d6e-4f09-bed0-375147895821" />
+      <Column Name="DEMİR" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="d687a8dd-0875-4b4d-aaed-42aa1ad8bbb6" />
+      <Column Name="[T.DEMİR BK]" Member="TDEMİRBK" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="1a0f0f9a-eedc-4ea3-943d-8b05ba7a186b" />
+      <Column Name="FERRİTTİN" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="f0a8a542-9f52-417e-bc57-44342b4270fa" />
+      <Column Name="B12" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="3b5562d5-71fa-4672-902b-e636d12ab266" />
+      <Column Name="FOLAT" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="5d2a44bd-0369-4b04-8ebc-f78f747dd533" />
+      <Column Name="[T BİL]" Member="TBİL" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="115b11c8-88dc-4e4c-acc2-4f5dd49807b7" />
+      <Column Name="[D BİL]" Member="DBİL" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="cded2edf-3c09-4372-8251-cf21276d3478" />
+      <Column Name="LDH" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="086c8f10-b9a4-45fd-9e7c-00e0352a83b5" />
+      <Column Name="SEDİM" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="32363415-25ef-4410-898f-919d01c1ebcf" />
+      <Column Name="CRP" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="1a5a2864-7652-4c50-93ef-7eb3f38cbf95" />
+      <Column Name="CPK" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="f7dc4da9-8a78-46b7-8140-530e9926b621" />
+      <Column Name="[ÜRİK ASİT]" Member="ÜRİKASİT" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="105794a6-56fc-4dbb-88c5-7b0f72beca65" />
+      <Column Name="GFR" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="01a90ed7-3ad1-4d84-a9d7-ed77d7fd0341" />
+      <Column Name="KisiID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="9a73e0be-8e1e-4fe0-95c4-72a2441ce6fb" />
+      <Association Name="Kisiler_Laboratuar" ed:AssociationGuid="62b06dd7-df93-44cb-9736-3abaaf4b99e8" Member="Kisiler" ed:Guid="49405d97-abd2-41cb-b1ad-3f01a6665699" ThisKey="KisiID" OtherKey="KisiID" Type="Kisiler" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Tahsilat" Member="Tahsilat">
+    <Type Name="Tahsilat" ed:Guid="6cc6f08c-2c79-4ac7-a178-2fcd517f8c0b">
+      <Column Name="TahsilatID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="2a074efa-cc53-4281-9f21-de8360e6650a" />
+      <Column Name="KisiID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Always" Precision="10" ed:ValidateRequired="false" ed:Guid="670f9268-89e2-4450-8cec-7cadad5d5d4a" />
+      <Column Name="Toplam" Type="System.Double" DbType="FLOAT" CanBeNull="true" UpdateCheck="Always" Precision="53" ed:ValidateRequired="false" ed:Guid="b0a1fa29-6610-4fbc-9a2b-0356a6c05e01" />
+      <Column Name="Odenen" Type="System.Double" DbType="FLOAT" CanBeNull="true" UpdateCheck="Always" Precision="53" ed:ValidateRequired="false" ed:Guid="012ef6b5-61eb-4686-8145-4558ca91c3f0" />
+      <Column Name="Bitti" Type="System.Boolean" DbType="BIT" CanBeNull="true" UpdateCheck="Always" ed:ValidateRequired="false" ed:Guid="bc1abc99-54bc-40f3-90aa-6dac989bebb7" />
+      <Column Name="Gun" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" UpdateCheck="Always" Precision="23" ed:ValidateRequired="false" ed:Guid="e77e9aad-59da-4f04-bd6b-56a1635be00b" />
+      <Association Name="Kisiler_Tahsilat" ed:AssociationGuid="3e823e63-5cf7-4e36-8da0-400ef351ec28" Member="Kisiler" ed:Guid="38ce2662-3cdc-40fa-8ebc-8c5157ec3785" ThisKey="KisiID" OtherKey="KisiID" Type="Kisiler" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

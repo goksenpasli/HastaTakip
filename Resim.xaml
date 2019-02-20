@@ -1,0 +1,109 @@
+﻿<Window x:Class="HastaTakip.Resim" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ice="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+        xmlns:wpf="clr-namespace:WebEye.Controls.Wpf;assembly=WebEye.Controls.Wpf.WebCameraControl"
+        xmlns:local="clr-namespace:HastaTakip" mc:Ignorable="d" Title="Resim Ekle" Width="413" Height="258"
+        ResizeMode="NoResize" UseLayoutRounding="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Window.Resources>
+        <local:ImageConverter x:Key="ImageConverter" />
+        <local:ObjectToBoolConverter x:Key="ObjectToBoolConverter" />
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot">
+        <GroupBox Header="RESİM BİLGİLERİ" Template="{StaticResource TintedGroupBox}">
+            <AdornerDecorator>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="234*" />
+                        <ColumnDefinition Width="145*" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="comboBox" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"
+                              Height="35" VerticalAlignment="Top" ItemTemplate="{StaticResource ComboDataTemplate}"
+                              Grid.ColumnSpan="2">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                                        VirtualizingStackPanel.IsVirtualizing="True" />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <TextBox
+                        IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=comboBox}"
+                        VerticalContentAlignment="Center" x:Name="TxtResimYolu" Height="36" VerticalAlignment="Top"
+                        Margin="0,40,75,0" IsReadOnly="True" />
+                    <Button
+                            IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=comboBox}"
+                            Margin="0,40,3,0" Height="36" VerticalAlignment="Top" Content="RESİM SEÇ"
+                            HorizontalAlignment="Right" Width="67" Click="BtnResimYükle_Click"
+                            Style="{StaticResource BlueButtonStyle}" />
+                    <Slider
+                        IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=comboBox}"
+                        VerticalAlignment="Top" Margin="0,81,0,0" Maximum="100" SmallChange="1"
+                        AutoToolTipPlacement="TopLeft"
+                        Value="{Binding Kalite,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TickFrequency="5"
+                        TickPlacement="TopLeft">
+                        <Slider.ToolTip>
+                            <TextBlock
+                                Text="Kaydedilecek Resmin Kalitesini Ayarlamak İçin Sağa-Sola Kaydırın. 0=(En Kötü En Az Boyut), 100=(En İyi En Fazla Boyut)&#xA;Kalite Arttıkça Dosya Boyutu Ve Yüklenme Süresi Uzar." />
+                        </Slider.ToolTip>
+                    </Slider>
+                    <Border HorizontalAlignment="Left" Margin="0,104,0,0" Width="99" BorderThickness="7"
+                            CornerRadius="4">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox"
+                                                 StartPoint="0.5,0">
+                                <GradientStop Color="#FFA21818" Offset="1" />
+                                <GradientStop Color="#FFA21818" />
+                                <GradientStop Color="#FF641137" Offset="0.228" />
+                                <GradientStop Color="#FF641137" Offset="0.81" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Image ice:Freeze="True"
+                               Source="{Binding Text, Converter={StaticResource ImageConverter}, ElementName=TxtResimYolu}">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget,RelativeSource={RelativeSource Self}}">
+                                    <Image Source="{Binding Source}"
+                                           Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource ImageWidthHeightConverter}, Mode=OneWay}"
+                                           Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={StaticResource ImageWidthHeightConverter}, Mode=OneWay}" />
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+                    </Border>
+                    <Button Click="BtnResimSil_Click" Margin="104,152,3,0"
+                            Style="{StaticResource BlueButtonStyle}"
+                            IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=comboBox}"
+                            Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Icons/shell32_240.png" HorizontalAlignment="Center" />
+                            <TextBlock Text="KİŞİNİN&#xA;RESMİNİ SİL" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnResimKaydet_Click" Margin="104,104,3,48"
+                            Style="{StaticResource BlueButtonStyle}"
+                            IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=comboBox}"
+                            Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="icons/shell32_16802.png" HorizontalAlignment="Center" />
+                            <TextBlock Text="RESİM&#xA;KAYDET" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <DockPanel Grid.Column="1">
+                        <UniformGrid DockPanel.Dock="Bottom">
+                            <ComboBox x:Name="comboBox1" DisplayMemberPath="Name" SelectionChanged="OnSelectionChanged" />
+                            <Button x:Name="startButton" Content="Başlat" IsEnabled="False" Click="OnStartButtonClick"
+                                    Style="{StaticResource BlueButtonStyle}" />
+                            <Button Content="Durdur"
+                                    IsEnabled="{Binding Path=IsCapturing, ElementName=webCameraControl}"
+                                    Click="OnStopButtonClick" Style="{StaticResource BlueButtonStyle}" />
+                            <Button Content="Resim Al"
+                                    IsEnabled="{Binding Path=IsCapturing, ElementName=webCameraControl}"
+                                    Click="OnImageButtonClick" Style="{StaticResource BlueButtonStyle}" />
+                        </UniformGrid>
+                        <wpf:WebCameraControl x:Name="webCameraControl" Margin="0,41,0,3" />
+                    </DockPanel>
+                </Grid>
+            </AdornerDecorator>
+        </GroupBox>
+    </Grid>
+</Window>

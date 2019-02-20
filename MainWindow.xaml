@@ -1,0 +1,708 @@
+﻿<Window
+    x:Class="HastaTakip.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ice="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:local="clr-namespace:HastaTakip"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    x:Name="Window"
+    Title="Hasta Takip"
+    Width="800"
+    Height="600"
+    Loaded="Window_Loaded"
+    UseLayoutRounding="True"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <local:NegateBooleanConverter x:Key="NegateBooleanConverter" />
+        <x:Array x:Key="Kulak" Type="{x:Type sys:String}">
+            <sys:String>Otit</sys:String>
+            <sys:String>Tüp Takılması</sys:String>
+            <sys:String>Kaşıntı</sys:String>
+            <sys:String>Miringotomi</sys:String>
+            <sys:String>Duymama</sys:String>
+        </x:Array>
+        <x:Array x:Key="Burun" Type="{x:Type sys:String}">
+            <sys:String>Sinüzit</sys:String>
+            <sys:String>Polip</sys:String>
+            <sys:String>Kaşıntı</sys:String>
+            <sys:String>Akıntı</sys:String>
+            <sys:String>Kanama</sys:String>
+            <sys:String>Tıkanıklık</sys:String>
+            <sys:String>Hapşırma</sys:String>
+        </x:Array>
+        <x:Array x:Key="Göz" Type="{x:Type sys:String}">
+            <sys:String>Kaşıntı</sys:String>
+            <sys:String>Kızarıklık</sys:String>
+            <sys:String>Sulanma</sys:String>
+            <sys:String>Akıntı</sys:String>
+            <sys:String>Kanama</sys:String>
+        </x:Array>
+        <x:Array x:Key="Boğaz" Type="{x:Type sys:String}">
+            <sys:String>Ağrı</sys:String>
+            <sys:String>Tonsillit</sys:String>
+            <sys:String>Temizleme</sys:String>
+            <sys:String>Postnazal Akıntı</sys:String>
+        </x:Array>
+        <x:Array x:Key="Solunum" Type="{x:Type sys:String}">
+            <sys:String>Horlama</sys:String>
+            <sys:String>Hırıltı</sys:String>
+            <sys:String>Öksürük</sys:String>
+            <sys:String>Nefes Darlığı</sys:String>
+            <sys:String>Balgam</sys:String>
+            <sys:String>Siyanoz</sys:String>
+        </x:Array>
+        <x:Array x:Key="Sindirim" Type="{x:Type sys:String}">
+            <sys:String>İştahsızlık</sys:String>
+            <sys:String>Bulantı</sys:String>
+            <sys:String>Kusma</sys:String>
+            <sys:String>Kabızlık</sys:String>
+            <sys:String>İshal</sys:String>
+            <sys:String>Karın Ağrısı</sys:String>
+        </x:Array>
+        <x:Array x:Key="Dolaşım" Type="{x:Type sys:String}">
+            <sys:String>Aritmi</sys:String>
+            <sys:String>Siyanoz</sys:String>
+            <sys:String>Diğer</sys:String>
+            <sys:String>Taşikardi</sys:String>
+            <sys:String>Balgam</sys:String>
+        </x:Array>
+        <x:Array x:Key="Deri" Type="{x:Type sys:String}">
+            <sys:String>Ekzama</sys:String>
+            <sys:String>Kaşıntı</sys:String>
+            <sys:String>Dermatit</sys:String>
+            <sys:String>Anijoödem</sys:String>
+        </x:Array>
+        <x:Array x:Key="Üriner" Type="{x:Type sys:String}">
+            <sys:String>Disüri</sys:String>
+            <sys:String>Poliüri</sys:String>
+            <sys:String>Hematüri</sys:String>
+        </x:Array>
+        <x:Array x:Key="YeniDoğan" Type="{x:Type sys:String}">
+            <sys:String>Prematüre</sys:String>
+            <sys:String>Anoksi</sys:String>
+            <sys:String>Oksijen Tedavisi</sys:String>
+        </x:Array>
+        <x:Array x:Key="İlaç" Type="{x:Type sys:String}">
+            <sys:String>Aspirin</sys:String>
+            <sys:String>Penisilin</sys:String>
+            <sys:String>Sülfonamid</sys:String>
+        </x:Array>
+        <x:Array x:Key="Hastalık" Type="{x:Type sys:String}">
+            <sys:String>Böcek</sys:String>
+            <sys:String>Ev Tozu</sys:String>
+            <sys:String>Sigara</sys:String>
+            <sys:String>Alkol</sys:String>
+            <sys:String>Aşırı Aktivite</sys:String>
+            <sys:String>Hava Değişikliği</sys:String>
+            <sys:String>Bitkiler</sys:String>
+            <sys:String>Seyahat</sys:String>
+            <sys:String>Besinler</sys:String>
+        </x:Array>
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot">
+        <TabControl
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="1"
+            Background="{StaticResource DatagridBackgrounds}">
+            <TabItem Header="KAYIT İŞLEMLERİ">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31*" />
+                        <RowDefinition Height="23*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="330*" />
+                        <ColumnDefinition Width="253*" />
+                        <ColumnDefinition Width="203*" />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Margin="0,0,3,0" Template="{StaticResource TintedGroupBox}">
+                        <GroupBox.Header>
+                            <TextBlock HorizontalAlignment="Center" Text="HASTA BİLGİLERİ" />
+                        </GroupBox.Header>
+                        <Grid>
+                            <AdornerDecorator>
+                                <UniformGrid
+                                    x:Name="ughastabilgileri"
+                                    Columns="2"
+                                    Rows="13">
+                                    <TextBlock Text="ADI" />
+                                    <TextBox x:Name="txadı" CharacterCasing="Upper">
+                                        <Binding
+                                            Path="Adi"
+                                            UpdateSourceTrigger="PropertyChanged"
+                                            ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                    <TextBlock Text="SOYADI" />
+                                    <TextBox x:Name="txsoyadı" CharacterCasing="Upper">
+                                        <Binding
+                                            Path="Soyadi"
+                                            UpdateSourceTrigger="PropertyChanged"
+                                            ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                    <TextBlock Text="TC KİMLİK NO" />
+                                    <TextBox
+                                        x:Name="txtc"
+                                        CharacterCasing="Upper"
+                                        MaxLength="11"
+                                        Style="{StaticResource BlackErrorTextBox}">
+                                        <Binding
+                                            Path="Tc"
+                                            UpdateSourceTrigger="PropertyChanged"
+                                            ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <local:TcKimlikDoğrula ValidatesOnTargetUpdated="True" />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                    <TextBlock Text="MESLEĞİ" />
+                                    <TextBox x:Name="txmesleği" CharacterCasing="Upper" />
+                                    <TextBlock Text="DOĞUM TARİHİ" />
+                                    <DatePicker
+                                        x:Name="dtdoğum"
+                                        DisplayDateEnd="{x:Static sys:DateTime.Now}"
+                                        DisplayDateStart="01/01/1753"
+                                        FirstDayOfWeek="Monday"
+                                        LostKeyboardFocus="DtLostKeyboardFocus">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="DTarihi">
+                                                <Binding.ValidationRules>
+                                                    <local:TarihDoğrula ValidatesOnTargetUpdated="True" />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
+                                    <TextBlock Text="KAYIT TARİHİ" />
+                                    <DatePicker
+                                        x:Name="dtkayıt"
+                                        DisplayDateEnd="{x:Static sys:DateTime.Now}"
+                                        DisplayDateStart="01/01/1753"
+                                        FirstDayOfWeek="Monday"
+                                        LostKeyboardFocus="DtLostKeyboardFocus">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="KTarihi">
+                                                <Binding.ValidationRules>
+                                                    <local:TarihDoğrula ValidatesOnTargetUpdated="True" />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
+                                    <TextBlock Text="CİNSİYETİ" />
+                                    <ComboBox x:Name="cbcinsiyet">
+                                        <ComboBoxItem Content="ERKEK" />
+                                        <ComboBoxItem Content="KADIN" />
+                                    </ComboBox>
+                                    <TextBlock Text="TELEFON NO" />
+                                    <xctk:MaskedTextBox
+                                        x:Name="txtelefon"
+                                        VerticalContentAlignment="Center"
+                                        Mask="(000) 000 00 00"
+                                        ValueDataType="{x:Type sys:String}" />
+                                    <TextBlock Text="İLİ" />
+                                    <ComboBox x:Name="cbİlAdi" DisplayMemberPath="Isim" />
+                                    <TextBlock Text="İLÇESİ" />
+                                    <ComboBox
+                                        x:Name="cbilçesi"
+                                        DisplayMemberPath="Isim"
+                                        ItemsSource="{Binding SelectedItem.Ilceler, ElementName=cbİlAdi}" />
+                                    <TextBlock Text="YAŞI" />
+                                    <TextBox x:Name="txyaşı" CharacterCasing="Upper">
+                                        <Binding
+                                            Path="Yas"
+                                            UpdateSourceTrigger="PropertyChanged"
+                                            ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <local:SıfırDahilSıfırdandanBüyük ValidatesOnTargetUpdated="True" />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                    <TextBlock Text="ADRESİ" />
+                                    <TextBox x:Name="txadresi" CharacterCasing="Upper">
+                                        <Binding
+                                            Path="Adresi"
+                                            UpdateSourceTrigger="PropertyChanged"
+                                            ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                    <Button
+                                        Click="Btkişikaydet_Click"
+                                        Content="KİŞİ KAYDET"
+                                        Style="{StaticResource BlueButtonStyle}" />
+                                    <Button
+                                        Click="Btresimekle_Click"
+                                        Content="RESİM EKLE"
+                                        Style="{StaticResource BlueButtonStyle}" />
+                                </UniformGrid>
+                            </AdornerDecorator>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="3,0,0,0"
+                        Template="{StaticResource TintedGroupBox}">
+                        <GroupBox.Header>
+                            <TextBlock HorizontalAlignment="Center" Text="BULGULAR" />
+                        </GroupBox.Header>
+                        <Grid>
+                            <TabControl>
+                                <TabControl.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Offset="1" Color="#FF1B5D8B" />
+                                        <GradientStop Color="#FF48F3CA" />
+                                    </LinearGradientBrush>
+                                </TabControl.Background>
+                                <TabItem Header="BULGULAR">
+                                    <StackPanel>
+                                        <UniformGrid
+                                            x:Name="ugbulgular"
+                                            Height="146"
+                                            Columns="4"
+                                            Rows="6">
+                                            <TextBlock Text="KULAK" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbkulak"
+                                                ItemsSource="{StaticResource Kulak}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Kulak, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="BURUN" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbburun"
+                                                ItemsSource="{StaticResource Burun}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Burun, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="BOĞAZ" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbboğaz"
+                                                ItemsSource="{StaticResource Boğaz}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Bogaz, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="GÖZ" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbgöz"
+                                                ItemsSource="{StaticResource Göz}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Göz, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="SOLUNUM" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbsolunum"
+                                                ItemsSource="{StaticResource Solunum}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Solunum, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="SİNDİRİM" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbsindirim"
+                                                ItemsSource="{StaticResource Sindirim}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Sindirim, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="DOLAŞIM" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbdolaşım"
+                                                ItemsSource="{StaticResource Dolaşım}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Dolasim, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="DERİ" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbderi"
+                                                ItemsSource="{StaticResource Deri}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Deri, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="ÜRİNER" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbüriner"
+                                                ItemsSource="{StaticResource Üriner}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Uriner, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="YENİ DOĞAN" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbyenidoğan"
+                                                ItemsSource="{StaticResource YeniDoğan}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Yenidogan, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="İLAÇ REAKSİYON" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbilaçreaksiyon"
+                                                ItemsSource="{StaticResource İlaç}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Ilac, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="HASTALIĞI ARTIRAN ETMENLER" />
+                                            <xctk:CheckComboBox
+                                                x:Name="cbhastalıkarttıranetmen"
+                                                ItemsSource="{StaticResource Hastalık}"
+                                                SelectedValue="{Binding SelectedItem.Bulgular/Hastalik, ElementName=dataGrid}"
+                                                ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+                                        </UniformGrid>
+                                        <TextBlock HorizontalAlignment="Center" Text="ŞİKAYETLER" />
+                                        <TextBox
+                                            x:Name="txşikayet"
+                                            Height="{Binding Height, ElementName=ugbulgular, Mode=OneWay}"
+                                            VerticalContentAlignment="Top"
+                                            MaxLength="4000"
+                                            SpellCheck.IsEnabled="True"
+                                            Text="{Binding SelectedItem.Bulgular/Sikayetler, ElementName=dataGrid}"
+                                            TextWrapping="WrapWithOverflow" />
+                                    </StackPanel>
+                                </TabItem>
+                                <TabItem Header="FİZİKİ MUAYENE">
+                                    <UniformGrid
+                                        x:Name="ugfizikimuayene"
+                                        Columns="4"
+                                        Rows="10">
+                                        <TextBlock Text="ATEŞ" />
+                                        <TextBox x:Name="txateş" Text="{Binding SelectedItem.FizikiMuayenes/Ates, ElementName=dataGrid}" />
+                                        <TextBlock Text="NABIZ" />
+                                        <TextBox x:Name="txnabız" Text="{Binding SelectedItem.FizikiMuayenes/Nabiz, ElementName=dataGrid}" />
+                                        <TextBlock Text="SOLUNUM" />
+                                        <TextBox x:Name="txsolunum" Text="{Binding SelectedItem.FizikiMuayenes/Solunum, ElementName=dataGrid}" />
+                                        <TextBlock Text="TANSİYON" />
+                                        <TextBox x:Name="txtansiyon" Text="{Binding SelectedItem.FizikiMuayenes/Tansiyon, ElementName=dataGrid}" />
+                                        <TextBlock Text="KİLO" />
+                                        <TextBox x:Name="txkilo" Text="{Binding SelectedItem.FizikiMuayenes/Kilo, ElementName=dataGrid}" />
+                                        <TextBlock Text="BOY (cm)" />
+                                        <TextBox x:Name="txboy" Text="{Binding SelectedItem.FizikiMuayenes/Boy, ElementName=dataGrid}" />
+                                    </UniformGrid>
+                                </TabItem>
+                                <TabItem Header="LABORATUAR">
+                                    <UniformGrid
+                                        x:Name="uglaboratuar"
+                                        Columns="8"
+                                        Rows="10">
+                                        <TextBlock Text="WBC" />
+                                        <TextBox x:Name="txwbc" Text="{Binding SelectedItem.Laboratuars/WBC, ElementName=dataGrid}" />
+                                        <TextBlock Text="HB" />
+                                        <TextBox x:Name="txhb" Text="{Binding SelectedItem.Laboratuars/HB, ElementName=dataGrid}" />
+                                        <TextBlock Text="HCT" />
+                                        <TextBox x:Name="txhct" Text="{Binding SelectedItem.Laboratuars/HCT, ElementName=dataGrid}" />
+                                        <TextBlock Text="PLT" />
+                                        <TextBox x:Name="txplt" Text="{Binding SelectedItem.Laboratuars/PLT, ElementName=dataGrid}" />
+                                        <TextBlock Text="MCV" />
+                                        <TextBox x:Name="txmcv" Text="{Binding SelectedItem.Laboratuars/MCV, ElementName=dataGrid}" />
+                                        <TextBlock Text="AKŞ" />
+                                        <TextBox x:Name="txakş" Text="{Binding SelectedItem.Laboratuars/AKŞ, ElementName=dataGrid}" />
+                                        <TextBlock Text="TKŞ" />
+                                        <TextBox x:Name="txtkş" Text="{Binding SelectedItem.Laboratuars/TKŞ, ElementName=dataGrid}" />
+                                        <TextBlock Text="ÜRE" />
+                                        <TextBox x:Name="txüre" Text="{Binding SelectedItem.Laboratuars/ÜRE, ElementName=dataGrid}" />
+                                        <TextBlock Text="KREATİNİN" />
+                                        <TextBox x:Name="txkreatinin" Text="{Binding SelectedItem.Laboratuars/KREATİNİN, ElementName=dataGrid}" />
+                                        <TextBlock Text="ALT" />
+                                        <TextBox x:Name="txalt" Text="{Binding SelectedItem.Laboratuars/ALT, ElementName=dataGrid}" />
+                                        <TextBlock Text="AST" />
+                                        <TextBox x:Name="txast" Text="{Binding SelectedItem.Laboratuars/AST, ElementName=dataGrid}" />
+                                        <TextBlock Text="ALK F" />
+                                        <TextBox x:Name="txalkf" Text="{Binding SelectedItem.Laboratuars/ALKF, ElementName=dataGrid}" />
+                                        <TextBlock Text="GGT" />
+                                        <TextBox x:Name="txggt" Text="{Binding SelectedItem.Laboratuars/GGT, ElementName=dataGrid}" />
+                                        <TextBlock Text="TPROTEİN" />
+                                        <TextBox x:Name="txtrotein" Text="{Binding SelectedItem.Laboratuars/TPROTEİN, ElementName=dataGrid}" />
+                                        <TextBlock Text="ALBUMİN" />
+                                        <TextBox x:Name="txalbumin" Text="{Binding SelectedItem.Laboratuars/ALBUMİN, ElementName=dataGrid}" />
+                                        <TextBlock Text="NA" />
+                                        <TextBox x:Name="txna" Text="{Binding SelectedItem.Laboratuars/NA, ElementName=dataGrid}" />
+                                        <TextBlock Text="K" />
+                                        <TextBox x:Name="txk" Text="{Binding SelectedItem.Laboratuars/K, ElementName=dataGrid}" />
+                                        <TextBlock Text="CA" />
+                                        <TextBox x:Name="txca" Text="{Binding SelectedItem.Laboratuars/CA, ElementName=dataGrid}" />
+                                        <TextBlock Text="P" />
+                                        <TextBox x:Name="txp" Text="{Binding SelectedItem.Laboratuars/P, ElementName=dataGrid}" />
+                                        <TextBlock Text="T.KOL" />
+                                        <TextBox x:Name="txtkol" Text="{Binding SelectedItem.Laboratuars/TKOL, ElementName=dataGrid}" />
+                                        <TextBlock Text="TG" />
+                                        <TextBox x:Name="txtg" Text="{Binding SelectedItem.Laboratuars/TG, ElementName=dataGrid}" />
+                                        <TextBlock Text="LDL" />
+                                        <TextBox x:Name="txldl" Text="{Binding SelectedItem.Laboratuars/LDL, ElementName=dataGrid}" />
+                                        <TextBlock Text="HDL" />
+                                        <TextBox x:Name="txhdl" Text="{Binding SelectedItem.Laboratuars/HDL, ElementName=dataGrid}" />
+                                        <TextBlock Text="VLDL" />
+                                        <TextBox x:Name="txvldl" Text="{Binding SelectedItem.Laboratuars/VLDL, ElementName=dataGrid}" />
+                                        <TextBlock Text="HBA1C" />
+                                        <TextBox x:Name="txhba1c" Text="{Binding SelectedItem.Laboratuars/HBA1C, ElementName=dataGrid}" />
+                                        <TextBlock Text="DEMİR" />
+                                        <TextBox x:Name="txdemir" Text="{Binding SelectedItem.Laboratuars/DEMİR, ElementName=dataGrid}" />
+                                        <TextBlock Text="T.DEMİR BK" />
+                                        <TextBox x:Name="txtdemir" Text="{Binding SelectedItem.Laboratuars/TDEMİRBK, ElementName=dataGrid}" />
+                                        <TextBlock Text="FERRİTTİN" />
+                                        <TextBox x:Name="txferrittin" Text="{Binding SelectedItem.Laboratuars/FERRİTTİN, ElementName=dataGrid}" />
+                                        <TextBlock Text="B12" />
+                                        <TextBox x:Name="txb12" Text="{Binding SelectedItem.Laboratuars/B12, ElementName=dataGrid}" />
+                                        <TextBlock Text="FOLAT" />
+                                        <TextBox x:Name="txfolat" Text="{Binding SelectedItem.Laboratuars/FOLAT, ElementName=dataGrid}" />
+                                        <TextBlock Text="T BİL" />
+                                        <TextBox x:Name="txtbil" Text="{Binding SelectedItem.Laboratuars/TBİL, ElementName=dataGrid}" />
+                                        <TextBlock Text="D BİL" />
+                                        <TextBox x:Name="txdbil" Text="{Binding SelectedItem.Laboratuars/DBİL, ElementName=dataGrid}" />
+                                        <TextBlock Text="LDH" />
+                                        <TextBox x:Name="txldh" Text="{Binding SelectedItem.Laboratuars/LDH, ElementName=dataGrid}" />
+                                        <TextBlock Text="SEDİM" />
+                                        <TextBox x:Name="txsedim" Text="{Binding SelectedItem.Laboratuars/SEDİM, ElementName=dataGrid}" />
+                                        <TextBlock Text="CRP" />
+                                        <TextBox x:Name="txcrp" Text="{Binding SelectedItem.Laboratuars/CRP, ElementName=dataGrid}" />
+                                        <TextBlock Text="CPK" />
+                                        <TextBox x:Name="txcpk" Text="{Binding SelectedItem.Laboratuars/CPK, ElementName=dataGrid}" />
+                                        <TextBlock Text="ÜRİK ASİT" />
+                                        <TextBox x:Name="txürik" Text="{Binding SelectedItem.Laboratuars/ÜRİKASİT, ElementName=dataGrid}" />
+                                        <TextBlock Text="GFR" />
+                                        <TextBox x:Name="txgfr" Text="{Binding SelectedItem.Laboratuars/GFR, ElementName=dataGrid}" />
+                                    </UniformGrid>
+                                </TabItem>
+                            </TabControl>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="0,3,3,0"
+                        Template="{StaticResource TintedGroupBox}">
+                        <GroupBox.Header>
+                            <TextBlock HorizontalAlignment="Center" Text="HASTA EKRANI" />
+                        </GroupBox.Header>
+                        <DataGrid
+                            x:Name="dataGrid"
+                            AutoGenerateColumns="False"
+                            Background="{StaticResource DatagridBackgrounds}"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            VirtualizingStackPanel.VirtualizationMode="Recycling">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn SortMemberPath="Adi">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox CharacterCasing="Upper">
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Adi"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </TextBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" Text="ADI" />
+                                                <Expander ExpandDirection="Right">
+                                                    <StackPanel>
+                                                        <TextBox x:Name="fltAd" CharacterCasing="Upper" />
+                                                        <UniformGrid HorizontalAlignment="Center" Rows="1">
+                                                            <TextBlock Foreground="Blue">
+                                                                <Hyperlink x:Name="HypAra" Click="HypAra_Click">
+                                                                    ARA
+                                                                </Hyperlink>
+                                                            </TextBlock>
+                                                            <TextBlock>
+                                                                <Hyperlink
+                                                                    x:Name="Hypİptal"
+                                                                    Click="Hypİptal_Click"
+                                                                    Foreground="Blue">
+                                                                    İPTAL
+                                                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </UniformGrid>
+                                                    </StackPanel>
+                                                </Expander>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="SOYADI" SortMemberPath="Soyadi">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox CharacterCasing="Upper">
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Soyadi"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </TextBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="TC" SortMemberPath="Tc">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox CharacterCasing="Upper" IsReadOnly="True">
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Tc"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </TextBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="KAYIT TARİHİ" SortMemberPath="KTarihi">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:DateTimePicker
+                                                Format="LongDate"
+                                                TimePickerVisibility="Collapsed"
+                                                Value="{Binding KTarihi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="DOĞUM TARİHİ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:DateTimePicker
+                                                Format="LongDate"
+                                                TimePickerVisibility="Collapsed"
+                                                Value="{Binding DTarihi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn
+                                    Width="220"
+                                    Header="SONRAKİ RANDEVU TARİHİ"
+                                    SortMemberPath="RandevuTarihi">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:DateTimePicker
+                                                Format="FullDateTime"
+                                                ValueChanged="DateTimePicker_ValueChanged"
+                                                Value="{Binding RandevuTarihi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <xctk:DateTimePicker.Style>
+                                                    <Style TargetType="{x:Type xctk:DateTimePicker}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="Background" Value="Red">
+                                                                <Setter Property="ToolTip" Value="Yarım Saat Öncesinde Veya Sonrasında Randevu Var Bilgi Amaçlıdır." />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </xctk:DateTimePicker.Style>
+                                            </xctk:DateTimePicker>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="GÜNCELLE">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Click="Btkişigüncelle_Click"
+                                                Content="GÜNCELLE"
+                                                Style="{StaticResource BlueButtonStyle}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="SİL">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                x:Name="BtKişiSil"
+                                                Click="BtKişiSil_Click"
+                                                Content="SİL"
+                                                Style="{StaticResource BlueButtonStyle}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="TAHSİLAT">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                x:Name="BtKişiTahsilat"
+                                                Click="BtKişiTahsilat_Click"
+                                                Content="TAHSİLAT"
+                                                Style="{StaticResource BlueButtonStyle}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="ADRES">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox CharacterCasing="Upper">
+                                                <Binding
+                                                    Mode="TwoWay"
+                                                    Path="Adresi"
+                                                    UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <local:TxtDoğrula ValidatesOnTargetUpdated="True" />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </TextBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="TELEFON">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox
+                                                Mask="(000) 000 00 00"
+                                                ValueDataType="{x:Type sys:String}"
+                                                Value="{Binding Telefon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="false">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <StackPanel>
+                                                        <Image
+                                                            Width="256"
+                                                            Height="256"
+                                                            ice:Freeze="True"
+                                                            Source="{Binding Resim, Converter={StaticResource ByteArrayToImageSource2}}">
+                                                            <Image.CacheMode>
+                                                                <BitmapCache />
+                                                            </Image.CacheMode>
+                                                        </Image>
+                                                        <TextBlock Foreground="Red" Text="{Binding Resim.Length, StringFormat='Resim {0} Byte Yer Kaplıyor.', Mode=OneWay}" />
+                                                        <TextBlock Text="{Binding Meslek, StringFormat='Mesleği {0}'}" />
+                                                        <TextBlock Text="{Binding Cinsiyeti, StringFormat='Cinsiyeti {0}'}" />
+                                                        <TextBlock Text="{Binding Ili, StringFormat='İli {0}'}" />
+                                                        <TextBlock Text="{Binding Ilcesi, StringFormat='İlçesi {0}'}" />
+                                                        <TextBlock Text="{Binding Yas, StringFormat='Yaşı {0}'}" />
+                                                    </StackPanel>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <!--<Trigger Property="Validation.HasError" Value="true">
+                                            <Setter Property="ToolTip" Value="{Binding (Validation.Errors).CurrentItem.ErrorContent, RelativeSource={RelativeSource Self}}" />
+                                        </Trigger>-->
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>
+                    </GroupBox>
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Click="Btrapor_Click"
+                        IsEnabled="{Binding Items.IsEmpty, Converter={StaticResource NegateBooleanConverter}, ElementName=dataGrid, Mode=OneWay}"
+                        Style="{StaticResource BlueButtonStyle}">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center" Text="RAPOR AL" />
+                            <ContentControl Content="{Binding Mode=OneWay, Source={StaticResource Print}}" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

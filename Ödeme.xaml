@@ -1,0 +1,89 @@
+﻿<Window
+    x:Class="HastaTakip.Ödeme"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HastaTakip"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="window"
+    Title="Ödeme"
+    Width="327.419"
+    Height="264.033"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <local:ObjectToBoolConverter x:Key="ObjectToBoolConverter" />
+        <local:BooltoYesNoConverter x:Key="BooltoYesNoConverter" />
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <ListView
+                x:Name="lvödeme"
+                Height="144"
+                SelectionMode="Single">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="60"
+                            DisplayMemberBinding="{Binding Toplam, StringFormat=\{0:C\}}"
+                            Header="Toplam" />
+                        <GridViewColumn
+                            Width="60"
+                            DisplayMemberBinding="{Binding Odenen, StringFormat=\{0:C\}}"
+                            Header="Ödenen" />
+                        <GridViewColumn
+                            Width="50"
+                            DisplayMemberBinding="{Binding Bitti, Converter={StaticResource BooltoYesNoConverter}}"
+                            Header="Bitti" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Gun}" Header="Tahsilat Tarihi" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <UniformGrid
+                Height="64"
+                Columns="2"
+                Rows="3">
+                <TextBlock Text="TOPLAM" />
+                <TextBox x:Name="TbToplam">
+                    <Binding
+                        Path="Toplam"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <local:SıfırdanBüyük ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <TextBlock Text="ÖDENEN" />
+                <TextBox x:Name="TbÖdenen">
+                    <Binding
+                        Path="Odenen"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <local:SıfırdanBüyük ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <Button
+                    Click="Btödemeekle_Click"
+                    Content="EKLE"
+                    Style="{StaticResource BlueButtonStyle}" />
+                <Button
+                    Click="BtSil_Click"
+                    Content="SİL"
+                    IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=lvödeme}"
+                    Style="{StaticResource BlueButtonStyle}" />
+                <Button
+                    Margin="0,0,-160.71,0"
+                    Click="BtKapat_Click"
+                    Content="ÖDENDİ OLARAK İŞARETLE"
+                    IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBoolConverter}, ElementName=lvödeme}"
+                    Style="{StaticResource BlueButtonStyle}" />
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</Window>
